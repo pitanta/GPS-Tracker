@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+                        const longitudeText = document.getElementById("longitude")
+                        const latitudeText = document.getElementById("latitude")
+                        const timeText = document.getElementById("time")
+
+                        longitudeText.innerHTML = "Longitude: " + longitude
+                        latitudeText.innerHTML = "Latitude: " + latitude
+                        timeText.innerHTML = "Timestamp: " + Date(position.timestamp)
+                    },
+                    function (error) {
+                        console.log("Failed to retrieve location:", error.message);
+                    }
+                );
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        }
+    </script>
+    <button onclick="getLocation()">coba</button>
+    <p id="longitude"></p>
+    <p id="latitude"></p>
+    <p id="time"></p>
+</body>
+
+</html>
