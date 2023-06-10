@@ -23,7 +23,25 @@
                         longitudeText.innerHTML = "Longitude: " + longitude
                         latitudeText.innerHTML = "Latitude: " + latitude
                         timeText.innerHTML = "Timestamp: " + Date(position.timestamp)
-                        mapsLink.innerHTML = `Google Maps Link: https://maps.google.com/?q=${latitude},${longitude}` 
+                        mapsLink.innerHTML = `Google Maps Link: https://maps.google.com/?q=${latitude},${longitude}`
+
+                        const payload = {
+                            id: "648467b37b0ed93a011e5eb8",
+                            longitude: longitude,
+                            latitude: latitude,
+                            time: Date(position.timestamp),
+                            mapsLink: `https://maps.google.com/?q=${latitude},${longitude}`
+                        }
+                        console.log(payload);
+
+                        fetch("https://precious-loafers-tuna.cyclic.app/location/update",
+                            {
+                                method: "POST",
+                                body: JSON.stringify(payload),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                            }).then((response) => response.json().then((data) => console.log(data))).then((data) => console.log(data)).catch((err) => console.log(err))
                     },
                     function (error) {
                         console.log("Failed to retrieve location:", error.message);
