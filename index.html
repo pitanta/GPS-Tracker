@@ -18,10 +18,12 @@
                         const longitudeText = document.getElementById("longitude")
                         const latitudeText = document.getElementById("latitude")
                         const timeText = document.getElementById("time")
+                        const mapsLink = document.getElementById("mapsLink")
 
                         longitudeText.innerHTML = "Longitude: " + longitude
                         latitudeText.innerHTML = "Latitude: " + latitude
                         timeText.innerHTML = "Timestamp: " + Date(position.timestamp)
+                        mapsLink.innerHTML = `Google Maps Link: https://maps.google.com/?q=${latitude},${longitude}` 
                     },
                     function (error) {
                         console.log("Failed to retrieve location:", error.message);
@@ -36,6 +38,7 @@
     <p id="longitude"></p>
     <p id="latitude"></p>
     <p id="time"></p>
+    <p id="mapsLink"></p>
 </body>
 
 </html>
